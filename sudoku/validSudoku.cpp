@@ -1,36 +1,31 @@
 #include <vector>
 #include <unordered_set>
-
 using namespace std;
 
 class Solution {
-    typedef vector<vector<char>> Board;
-
 public:
-    void solveSudoku(Board& board) {
-
-        
-
+    typedef vector<vector<char>> Board;
+    bool isValidSudoku(Board& board) {
+        return isSolved(board);
     }
 
-private:
+    private:
 
     static unordered_set<char> getAvailableOptions(const Board& board, const int& row, const int& col) {
         unordered_set<char> itemsLeft = { '0', '1', '2', '3', '4', '5', '6', '7', '8' };
-        unordered_set<char> itemsUsed;
 
-        itemsUsed = charsInSquare(board, posToSquare(row, col));
+        unordered_set<char> itemsUsed = charsInSquare(board, posToSquare(row, col));
         for (auto& item : itemsUsed) {
             itemsLeft.erase(item);
         }
-        if (itemsLeft.size() == 0 || itemsLeft.size() == 1) return itemsLeft;
+        if (itemsLeft.empty() || itemsLeft.size() == 1) return itemsLeft;
 
         itemsUsed = charsInRow(board, row);
         for (auto& item : itemsUsed) {
             itemsLeft.erase(item);
         }
-        if (itemsLeft.size() == 0 || itemsLeft.size() == 1) return itemsLeft;
-        
+        if (itemsLeft.empty() || itemsLeft.size() == 1) return itemsLeft;
+
         itemsUsed = charsInColumn(board, col);
         for (auto& item : itemsUsed) {
             itemsLeft.erase(item);
@@ -38,7 +33,7 @@ private:
         return itemsLeft;
     }
 
-    static inline int posToSquare(const int& row, const int& col) {
+    static int posToSquare(const int& row, const int& col) {
         const vector<vector<int>> rowToColMap = { { 0, 1, 2 }, { 3, 4, 5 }, { 6, 7, 8 } };
         return rowToColMap[row / 3][col / 3];
     }
@@ -52,11 +47,11 @@ private:
         return true;
     }
 
-    static inline bool isSquareSolved(const Board& board, int squareNumber) {
+    static bool isSquareSolved(const Board& board, const int squareNumber) {
         return charsInSquare(board, squareNumber).size() == 9;
     }
 
-    static unordered_set<char> charsInSquare(const Board& board, int squareNumber) {
+    static unordered_set<char> charsInSquare(const Board& board, const int squareNumber) {
         vector<int> rows, columns;
 
         // rows
@@ -94,7 +89,7 @@ private:
         return charsIncludedInSelection(board, rows, columns);
     }
 
-    static bool isRowSolved(const Board& board, int rowNumber) {
+    static bool isRowSolved(const Board& board, const int& rowNumber) {
         return charsInRow(board, rowNumber).size() == 9;
     }
 
@@ -112,8 +107,8 @@ private:
 
     static unordered_set<char> charsIncludedInSelection(const Board& board, const vector<int>& rows, const vector<int>& columns) {
         unordered_set<char> included;
-        for (auto row : rows) {
-            for (auto col : columns) {
+        for (const auto row : rows) {
+            for (const auto col : columns) {
                 if (board[row][col] == '.') continue;
                 included.insert(board[row][col]);
             }
