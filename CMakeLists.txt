@@ -10,6 +10,5 @@ add_executable(longestSubstringWithoutRepeatingCharacters longestSubstringWithou
 add_executable(mergeKSortedLists mergeKSortedLists.cpp)
 add_executable(swapNodesInPairs swapNodesInPairs.cpp)
 add_executable(removeDuplicatesFromSortedArray removeDuplicatesFromSortedArray.cpp)
-add_executable(sudokuSolver sudoku/sudokuSolver.cpp
-        sudoku/validSudoku.cpp)
+add_executable(sudokuSolver sudoku/sudokuSolver.cpp)
 add_executable(validSudoku sudoku/validSudoku.cpp)
