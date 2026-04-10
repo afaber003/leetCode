@@ -13,3 +13,4 @@ add_executable(removeDuplicatesFromSortedArray removeDuplicatesFromSortedArray.c
 add_executable(sudokuSolver sudokuSolver.cpp)
 add_executable(palindromeNumber palindromeNumber.cpp)
 add_executable(zigZagConversion zigZagConversion.cpp)
+add_executable(pow pow.cpp)
