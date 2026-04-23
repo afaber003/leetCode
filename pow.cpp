@@ -1,17 +1,16 @@
 #include <cstdio>
+#include <cmath>
 
 class Solution {
 public:
     double myPow(double x, int n) {
         if (n == 0) return 1.0;
-        for (int i = 1; i < +n; i++) {
-            x *= x;
-        }
-        return n > 0 ? x : (1/x);
+        if (n == 1 || x == 1) return x;
+
     }
 };
 
 int main() {
     Solution s;
-    std::printf("%lf\n", s.myPow(2, -2));
+    std::printf("%lf\n", s.myPow(2, -4));
 }
